@@ -10,6 +10,17 @@
 <body>
 <script src="three.js"></script>
 <script>
+//Colors for Car
+const carColors = [
+	0xef2d56,
+	0x0ad3ff,
+	0xff9f1c, 
+	0xff80ed,
+	0xffd700,
+	0x40e0d0,
+	0x800000,
+	0x00ff7f
+  ];
 // Scene
 const scene = new THREE.Scene();
 const playerCar = Car();
@@ -63,12 +74,13 @@ function Car() {
     const frontWheel = Wheel();
     frontWheel.position.x = 18;
     car.add(frontWheel);
-
+    
+    const color = pickRandom(carColors);
     const main = new THREE.Mesh(
         new THREE.BoxBufferGeometry(60,30,15),
-        new THREE.MeshLambertMaterial({color: 0xa52523})
+        new THREE.MeshLambertMaterial({color})
     );
-    main.position.z =12;
+    main.position.z =10;
     car.add(main);
     const cabin = new THREE.Mesh(
         new THREE.BoxBufferGeometry(33,24,12),
@@ -77,7 +89,6 @@ function Car() {
     cabin.position.x =-6;
     cabin.position.z = 25.5;
     car.add(cabin);
-
     return car;
 }
 
